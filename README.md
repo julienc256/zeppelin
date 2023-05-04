@@ -1,5 +1,7 @@
 # zeppelin
-Calcul du lift d'un ballon gonflé à l'hélium ou l'hydrogène, en fonction de ses dimensions et du grammage de l'enveloppe
+Calcul du lift d'un ballon gonflé à l'hélium ou l'hydrogène, en fonction de ses dimensions et du grammage de l'enveloppe.  
+
+L'enveloppe d'un ballon en mylar fait environ 30g/m²
 
 Exemple d'exécution :
 

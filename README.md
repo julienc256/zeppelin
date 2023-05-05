@@ -13,6 +13,8 @@ Cas 2 : Ballon mylar (forme sphérique), diamètre d'environ 40 cm
 
 ![Ballon mylar](/readme/example2_sphere.jpg "Ballon mylar")
 
+Lancement : dirigeable.exe  
+
     *******************************************************************************
     *********         Dirigeable de forme ellispsoide ou spherique        *********
     *******************************************************************************

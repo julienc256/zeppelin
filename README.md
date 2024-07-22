@@ -53,10 +53,14 @@ Lancement : dirigeable.exe
     A:\>
 
 
-# Compilation :
+## Compilation :
 gcc zeppelin.c -o zeppelin
 
 ## Remarque :
 Le code se compile sur n'importe quel OS (Windows, Mac OS, Linux, etc...)  
 Néanmoins si l'OS n'est pas Windows, il faut enlever l'instruction #define WINDOWS à la ligne 19 du code source (ou la mettre en commentaires)
+
+Pour avoir les messages en Anglais :  
+Sous l'interpréteur de commande Windows (cmd.exe), avant de lancer l'executable, taper : set LANG=EN  
+Sous Linux, taper : LANG=EN
 

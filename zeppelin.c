@@ -65,7 +65,6 @@ int main(int argc, char *argv[])
 	if (language != NULL)
 		if (strcmp(language, "EN") == 0)
 			lang=EN;
-	lang=EN;
 	printf("*******************************************************************************\n");
 	if (lang==EN)
 		printf("*********           Blimp of ellipsoidal or spherical shape           *********\n");

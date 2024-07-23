@@ -1,11 +1,13 @@
 /* ----------------------------------------------------------------------------------------------
 Auteur  : Julien COPPOLANI
 But     : Programme de calcul de Lift pour aide a la conception d'enveloppe de Dirigeable RC
-Version : 1.2
+Version : 1.3
 ------------------------------------------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------------------------------------
 HISTORIQUE :
+v 1.3 : 2024-07-23 : Ajout du choix entre indiquer le grammage de l'enveloppe (en g/m2) ou
+                     indiquer la masse de l'enveloppe (en g)
 v 1.2 : 2024-07-22 : Gestion de l'Anglais (en plus du Francais)
 v 1.1 : 2024-07-14 : Ajout gaz HHO (melange de gaz contenant de l'Hydrogene (H2)
                      et de l'oxygene (O2) dans des  proportions stoechiometriques (2:1)
@@ -63,6 +65,7 @@ int main(int argc, char *argv[])
 	if (language != NULL)
 		if (strcmp(language, "EN") == 0)
 			lang=EN;
+	lang=EN;
 	printf("*******************************************************************************\n");
 	if (lang==EN)
 		printf("*********           Blimp of ellipsoidal or spherical shape           *********\n");
@@ -107,12 +110,31 @@ int main(int argc, char *argv[])
 			volume          = M_PI * diametre * diametre * diametre / 6E6;
 			aire            = M_PI * diametre * diametre / 1E4;
 		}
-		if (lang==EN)
-			printf("Envelope weight (in g/m2)                 : ");
+		do {
+			fflush(stdin);
+			if (lang==EN)
+				printf("Envelope weight\n    [1-In g/m2]\n    [2-Full weight in g]                  : ");
+			else
+				printf("Masse de l'enveloppe\n    [1-Grammage  (en g/m2)]\n    [2-Masse totale (en g)]                : ");
+			scanf("%d", &type);
+		} while (type != 1 && type != 2);
+		if (type == 1)
+		{
+			if (lang==EN)
+				printf("Envelope weight (in g/m2)                 : ");
+			else
+				printf("Grammage de l'enveloppe (en g/m2)          : ");
+			scanf("%lf", &grammage);
+			masse_enveloppe = aire * grammage;
+		}
 		else
-			printf("Grammage de l'enveloppe (en g/m2)          : ");
-		scanf("%lf", &grammage);
-		masse_enveloppe = aire * grammage;
+		{
+			if (lang==EN)
+				printf("Envelope weight (in g)                    :");
+			else
+				printf("Masse totale de l'enveloppe (en g)         : ");
+			scanf("%lf", &masse_enveloppe);
+		}
 		lift_hho        = volume * (MASSE_VOLUMIQUE_AIR - MASSE_VOLUMIQUE_HHO) - masse_enveloppe;
 		lift_helium     = volume * (MASSE_VOLUMIQUE_AIR - MASSE_VOLUMIQUE_HELIUM) - masse_enveloppe;
 		lift_hydrogene  = volume * (MASSE_VOLUMIQUE_AIR - MASSE_VOLUMIQUE_HYDROGENE) - masse_enveloppe;
